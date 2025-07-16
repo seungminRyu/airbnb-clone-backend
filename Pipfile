@@ -9,9 +9,10 @@ black = "*"
 
 [packages]
 django = "==3.2.25"
+pillow = "*"
 
 [requires]
 python_version = "3.12"
 
 [pipenv]
-allow_prereleases = true 
+allow_prereleases = true
