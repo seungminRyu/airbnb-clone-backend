@@ -3,10 +3,12 @@
 #0.1 Requirements (01:59)
 #0.2 Why Django (03:36)
 #0.3 Django vs Flask (02:44)
+
 #1 Set Up
 #1.0 Python3 (03:21)
 #1.1 Poetry (10:28)
 #1.2 Start Project (04:33)
+
 #2 OOP with Python
 #2.0 Introduction (02:06)
 #2.1 __init__ (06:27)
@@ -14,6 +16,7 @@
 #2.3 super() (06:25)
 #2.4 Recap (07:04)
 #2.5 dir (08:12)
+
 #3 Django Basics
 #3.0 Run Server (04:57)
 #3.1 Migrations (07:16)
@@ -21,12 +24,14 @@
 #3.3 Super User (07:24)
 #3.4 Framework vs Library (10:35)
 #3.5 Apps (07:14)
+
 #4 Django Apps
 #4.0 Models (10:43)
 #4.1 Migrations (11:55)
 #4.2 Recap (10:49)
 #4.3 Admin (13:08)
 #4.4 Documentation (13:33)
+
 #5 Users App
 #5.0 Introduction (11:52)
 #5.1 Custom Model (13:53)
@@ -35,6 +40,7 @@
 #5.4 Custom Admin (08:34)
 #5.5 Foreign Keys (13:16)
 #5.6 Super Mega Recap (16:07)
+
 #6 Models and Admin
 #6.0 User Model (11:38)
 #6.1 Room Model (07:08)
@@ -48,6 +54,7 @@
 #6.9 Bookings (14:42)
 #6.10 Medias (10:11)
 #6.11 Direct Messages (15:21)
+
 #7 ORM
 #7.0 Introduction (10:58)
 #7.1 filter, get, create, delete (14:10)
@@ -57,12 +64,14 @@
 #7.5 Reverse Accessors (11:27)
 #7.6 related_name (07:47)
 #7.7 Recap (06:33)
+
 #8 Power Admin
 #8.0 Methods (13:42)
 #8.1 Search Fields (07:41)
 #8.2 Admin Actions (09:18)
 #8.3 Custom Filters (16:19)
 #8.4 Recap (04:45)
+
 #9 URLS and Views
 #9.0 Views (09:18)
 #9.1 Include (06:04)
@@ -71,6 +80,7 @@
 #9.4 Django Templates (06:42)
 #9.5 DoesNotExist (08:54)
 #9.6 Django vs React (06:38)
+
 #10 Django Rest Framework
 #10.0 Introduction (06:15)
 #10.1 JsonResponse (12:39)
@@ -86,6 +96,7 @@
 #10.11 ModelSerializer (11:53)
 #10.12 ModelViewSet (07:34)
 #10.13 Conclusions (09:36)
+
 #11 REST API
 #11.0 All Amenities (12:38)
 #11.1 Amenity Detail (07:13)
@@ -113,13 +124,16 @@
 #11.23 Create a Booking (16:55)
 #11.24 Validate Booking (15:51)
 #11.25 Booking Completed (07:20)
+
 #12 Users API
 #12.0 User Profile (14:31)
 #12.1 Create User (11:52)
 #12.2 Change Password (13:21)
 #12.3 Log In and Log Out (06:46)
+
 #13 Checkpoint
 #13.0 Code Challenge (02:36)
+
 #14 GraphQL API
 #14.0 Introduction (02:43)
 #14.1 Query (12:13)
@@ -132,6 +146,7 @@
 #14.8 Custom Resolvers (14:44)
 #14.9 Permissions (08:23)
 #14.10 Code Challenge (02:35)
+
 #15 Authentication
 #15.0 Introduction (04:56)
 #15.1 Custom Authentication (12:54)
@@ -140,6 +155,7 @@
 #15.4 JWT Econde (12:17)
 #15.5 JWT Decode (09:10)
 #15.6 Environment Files (07:37)
+
 #16 API Testing
 #16.0 Introduction (02:32)
 #16.1 Our First Test (06:22)
@@ -147,6 +163,7 @@
 #16.3 Create Amenity Test (08:16)
 #16.4 Amenity Detail Test (08:56)
 #16.5 Test Authentication (08:41)
+
 #17 Front-end Setup
 #18 Chakra UI
 #19 React Query
