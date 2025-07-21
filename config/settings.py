@@ -26,6 +26,8 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",  # 정적 파일 관리
 ]
 
+THIRD_PARTY_APPS = []
+
 PROJECT_APPS = ["users.apps.UsersConfig"]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
