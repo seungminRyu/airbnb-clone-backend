@@ -56,7 +56,7 @@
 #6.11 Direct Messages (15:21)
 
 #7 ORM
-#7.0 Introduction (10:58)
+#7.0 Introduction (10:58)
 #7.1 filter, get, create, delete (14:10)
 #7.2 QuerySets (07:01)
 #7.3 Admin Methods (14:34)
@@ -126,7 +126,7 @@
 #11.25 Booking Completed (07:20)
 
 #12 Users API
-#12.0 User Profile (14:31)
+#12.0 User Profile (14:31)
 #12.1 Create User (11:52)
 #12.2 Change Password (13:21)
 #12.3 Log In and Log Out (06:46)

@@ -26,7 +26,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",  # 정적 파일 관리
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = ["django_countries"]
 
 PROJECT_APPS = [
     "core.apps.CoreConfig",
