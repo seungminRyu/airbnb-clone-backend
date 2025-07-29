@@ -1,17 +1,43 @@
 from django.contrib import admin
-from . import models
+from .models import Room, Amenity
 
 
-@admin.register(models.RoomType, models.Facility, models.Amenity, models.HouseRule)
-class ItemAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(models.Room)
+@admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
-    pass
+    """Custom Room Admin"""
+
+    list_display = (
+        "name",
+        "price",
+        "kind",
+        "owner",
+        "created_at",
+        "updated_at",
+    )
+
+    list_filter = (
+        "country",
+        "city",
+        "pet_friendly",
+        "kind",
+        "amenities",
+        "created_at",
+        "updated_at",
+    )
 
 
-@admin.register(models.Photo)
-class PhotoAdmin(admin.ModelAdmin):
-    pass
+@admin.register(Amenity)
+class AmenityAdmin(admin.ModelAdmin):
+    """Custom Amenity Admin"""
+
+    list_display = (
+        "name",
+        "description",
+        "created_at",
+        "updated_at",
+    )
+
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+    )

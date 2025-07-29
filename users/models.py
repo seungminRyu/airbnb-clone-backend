@@ -5,27 +5,23 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     """Custom User Model"""
 
-    GENDER_MALE = "male"
-    GENDER_FEMALE = "female"
-    GENDER_OTHER = "other"
-    GENDER_CHOICES = (
-        (GENDER_MALE, "Male"),
-        (GENDER_FEMALE, "Female"),
-        (GENDER_OTHER, "Other"),
-    )
+    class GenderChoices(models.TextChoices):
+        MALE = ("male", "Male")
+        FEMALE = ("female", "Female")
 
-    LANGUAGE_ENGLISH = "en"
-    LANGUAGE_KOREAN = "kr"
-    LANGUAGE_CHOICES = ((LANGUAGE_ENGLISH, "English"), (LANGUAGE_KOREAN, "Korean"))
+    class LanguageChoices(models.TextChoices):
+        KR = ("kr", "Korean")
+        EN = ("en", "English")
 
-    CURRENCY_USD = "usd"
-    CURRENCY_KRW = "krw"
-    CURRENCY_CHOICES = ((CURRENCY_USD, "USD"), (CURRENCY_KRW, "KRW"))
+    class CurrencyChoices(models.TextChoices):
+        WON = ("won", "Korean Won")
+        USD = ("usd", "Dollar")
 
+    first_name = models.CharField(max_length=150, editable=False)
+    last_name = models.CharField(max_length=150, editable=False)
     avatar = models.ImageField(blank=True)
-    gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
-    bio = models.TextField(blank=True)
-    birthdate = models.DateField(blank=True, null=True)
-    language = models.CharField(choices=LANGUAGE_CHOICES, max_length=2, blank=True)
-    currency = models.CharField(choices=CURRENCY_CHOICES, max_length=3, blank=True)
-    superhost = models.BooleanField(default=False)
+    name = models.CharField(max_length=150, default="")
+    is_host = models.BooleanField(default=False)
+    gender = models.CharField(max_length=10, choices=GenderChoices.choices)
+    language = models.CharField(max_length=2, choices=LanguageChoices.choices)
+    currency = models.CharField(max_length=5, choices=CurrencyChoices.choices)

@@ -1,80 +1,40 @@
 from django.db import models
-from core import models as core_models
-from django_countries.fields import CountryField
+from common.models import CommonModel
 
 
-class AbstractItem(core_models.TimeStampedModel):
-    """Abstract Item"""
+class Room(CommonModel):
+    """Room Model Definition"""
 
-    name = models.CharField(max_length=80)
+    class RoomKindChoice(models.TextChoices):
+        ENTIRE_PLACE = ("entire_place", "ENTIRE_PLACE")
+        PRIVATE_ROOM = ("private_room", "PRIVATE_ROOM")
+        SHARED_ROOM = ("shared_room", "SHARED_ROOM")
 
-    class Meta:
-        abstract = True
+    name = models.CharField(max_length=180, default="")
+    country = models.CharField(max_length=50, default="한국")
+    city = models.CharField(max_length=80, default="서울")
+    price = models.PositiveIntegerField()
+    rooms = models.PositiveIntegerField()
+    toilets = models.PositiveIntegerField()
+    description = models.TextField()
+    address = models.CharField(max_length=250)
+    pet_friendly = models.BooleanField(default=True)
+    kind = models.CharField(max_length=20, choices=RoomKindChoice.choices)
+    owner = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    amenities = models.ManyToManyField("rooms.Amenity")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
-class RoomType(AbstractItem):
-    """RoomType Model Definition"""
+class Amenity(CommonModel):
+    """Amenity Definition"""
 
-    class Meta:
-        verbose_name = "Room Type"
+    name = models.CharField(max_length=150)
+    description = models.TextField(max_length=150, null=True, blank=True)
 
-
-class Amenity(AbstractItem):
-    """Amenity Model Definition"""
+    def __str__(self) -> str:
+        return self.name
 
     class Meta:
         verbose_name_plural = "Amenities"
-
-
-class Facility(AbstractItem):
-    """Facility Model Definition"""
-
-    class Meta:
-        verbose_name_plural = "Facilities"
-
-
-class HouseRule(AbstractItem):
-    """HouseRule Model Definition"""
-
-    class Meta:
-        verbose_name = "House Rule"
-
-
-class Photo(core_models.TimeStampedModel):
-    """Photo Model Definition"""
-
-    caption = models.CharField(max_length=80)
-    file = models.ImageField()
-    room = models.ForeignKey("Room", on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.caption
-
-
-class Room(core_models.TimeStampedModel):
-    """Room Model Definition"""
-
-    name = models.CharField(max_length=140)
-    description = models.TextField()
-    country = CountryField()
-    city = models.CharField(max_length=80)
-    price = models.IntegerField()
-    address = models.CharField(max_length=140)
-    guests = models.IntegerField()
-    beds = models.IntegerField()
-    bedrooms = models.IntegerField()
-    baths = models.IntegerField()
-    check_in = models.TimeField()
-    check_out = models.TimeField()
-    instant_book = models.BooleanField(default=False)
-    host = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    room_type = models.ForeignKey("RoomType", on_delete=models.SET_NULL, null=True)
-    amenities = models.ManyToManyField("Amenity", blank=True)
-    facilities = models.ManyToManyField("Facility", blank=True)
-    house_rules = models.ManyToManyField("HouseRule", blank=True)
-
-    def __str__(self):
-        return self.name
