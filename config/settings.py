@@ -26,8 +26,6 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",  # 정적 파일 관리
 ]
 
-THIRD_PARTY_APPS = ["django_countries"]
-
 PROJECT_APPS = [
     "common.apps.CommonConfig",
     "users.apps.UsersConfig",
@@ -36,6 +34,7 @@ PROJECT_APPS = [
     "categories.apps.CategoriesConfig",
     "reviews.apps.ReviewsConfig",
     "wishlists.apps.WishlistsConfig",
+    "bookings.apps.BookingsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
