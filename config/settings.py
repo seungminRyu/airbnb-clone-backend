@@ -36,6 +36,7 @@ PROJECT_APPS = [
     "wishlists.apps.WishlistsConfig",
     "bookings.apps.BookingsConfig",
     "medias.apps.MediasConfig",
+    "direct_messages.apps.DirectMessagesConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS

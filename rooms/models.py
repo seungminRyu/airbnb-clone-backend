@@ -28,7 +28,7 @@ class Room(CommonModel):
 
 
 class Amenity(CommonModel):
-    """Amenity Definition"""
+    """Amenity Model Definition"""
 
     name = models.CharField(max_length=150)
     description = models.TextField(max_length=150, null=True, blank=True)
