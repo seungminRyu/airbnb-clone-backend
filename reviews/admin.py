@@ -6,6 +6,9 @@ from .models import Review
 class ReviewAdmin(admin.ModelAdmin):
     list_display = (
         "__str__",
+        "rating",
+        "room",
+        "experience",
         "payload",
     )
     list_filter = ("rating",)
