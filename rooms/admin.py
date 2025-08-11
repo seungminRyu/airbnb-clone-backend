@@ -26,7 +26,11 @@ class RoomAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
-    search_fields = ("name", "description")
+    search_fields = (
+        "name",
+        "^price",
+        "=owner__username",
+    )
     readonly_fields = ("rating",)
 
     # total_reviews가 오름,내림 정렬 될 수 있도록
