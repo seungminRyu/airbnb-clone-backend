@@ -25,6 +25,13 @@ class Room(CommonModel):
         "users.User", on_delete=models.CASCADE, related_name="rooms"
     )
     amenities = models.ManyToManyField("rooms.Amenity", related_name="rooms")
+    category = models.ForeignKey(
+        "categories.Category",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="rooms",
+    )
 
     def __str__(room) -> str:
         return room.name
@@ -32,7 +39,7 @@ class Room(CommonModel):
     def total_amenities(room):
         return room.amenities.count()
 
-    def rating(room):
+    def avg_rating(room):
         count = room.reviews.count()
         if count == 0:
             return "No Reviews"
