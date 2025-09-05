@@ -1,9 +1,18 @@
 from django.http import HttpResponse
 from datetime import datetime
+from django.shortcuts import render
+from .models import Room
 
 
 def see_all_rooms(request):
-    return HttpResponse("see all rooms")
+    rooms = Room.objects.all()
+    context = {"rooms": rooms, "title": "안녕하세요! 방을 보여드립니다."}
+
+    return render(
+        request,
+        "all_rooms.html",
+        context,
+    )
 
 
 def see_one_room(request, room_id):
