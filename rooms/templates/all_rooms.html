@@ -1,6 +1,16 @@
 <h1>{{title}}</h1>
+
 <ul>
-{% for room in rooms %}
-<li>{{room.name}}</li>
-{% endfor %}
+    {% for room in rooms %}
+    <li>
+        <a href="/rooms/{{room.pk}}">
+            <h3><{{forloop.counter}}> {{room.name}}</h3>
+        </a>
+        <p>방소유자: {{room.owner.username}}</p>
+        <p>어메니티</p>
+        {% for amenity in room.amenities.all %}
+            <span>- {{amenity.name}}</span><br/>
+        {% endfor %}
+    </li>
+    {% endfor %}
 </ul>
