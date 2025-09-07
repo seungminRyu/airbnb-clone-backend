@@ -10,6 +10,7 @@ package-mode = false
 python = "^3.12"
 django = "^4.2.0"
 pillow = "^11.3.0"
+djangorestframework = "^3.13.1"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.0.0"
