@@ -44,13 +44,6 @@ class Room(CommonModel):
         if count == 0:
             return "No Reviews"
         else:
-            # 니꼬 ver
-            # total_rating = 0
-            # for review in room.reviews.all().values("rating"):
-            #     total_rating += review["rating"]
-            # return round(total_rating / count, 2)
-
-            # 개선 ver
             avg_rating = room.reviews.aggregate(Avg("rating"))["rating__avg"]
             return round(avg_rating)
 
