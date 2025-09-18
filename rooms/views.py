@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from rest_framework.status import HTTP_204_NO_CONTENT
 
-from .models import Amenity
-from .serializers import AmenitySerializer
+from .models import Amenity, Room
+from .serializers import AmenitySerializer, RoomSerializer
 
 
 class Amenities(APIView):
@@ -50,3 +50,19 @@ class AmenityDetail(APIView):
         amenity = self.get_object(pk)
         amenity.delete()
         return Response(status=HTTP_204_NO_CONTENT)
+
+
+class Rooms(APIView):
+    def get(self, request):
+        # all_rooms = Room.objects.all()
+
+        # select_related로 ForeignKey 최적화
+        # prefetch_related로 ManyToMany 최적화
+        all_rooms = (
+            Room.objects.select_related("owner", "category")
+            .prefetch_related("amenities")
+            .all()
+        )
+
+        serializer = RoomSerializer(all_rooms, many=True)
+        return Response(serializer.data)
