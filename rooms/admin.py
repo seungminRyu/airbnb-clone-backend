@@ -26,7 +26,7 @@ class RoomAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "price",
-        "avg_rating",
+        "rating",
         "kind",
         "total_amenities",
         "owner",
@@ -49,7 +49,7 @@ class RoomAdmin(admin.ModelAdmin):
         "=owner__username",
     )
 
-    readonly_fields = ("avg_rating",)
+    readonly_fields = ("rating",)
 
     # total_reviews가 오름,내림 정렬 될 수 있도록
     # def get_queryset(self, request):
