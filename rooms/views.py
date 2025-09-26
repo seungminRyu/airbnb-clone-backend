@@ -2,11 +2,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import (
     NotFound,
-    NotAuthenticated,
     ParseError,
     PermissionDenied,
 )
 from rest_framework.status import HTTP_204_NO_CONTENT
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.db import transaction
 from django.core.paginator import Paginator
 from django.conf import settings
@@ -65,6 +65,8 @@ class AmenityDetail(APIView):
 
 
 class Rooms(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
     def get(self, request):
         # all_rooms = Room.objects.all()
 
@@ -82,9 +84,6 @@ class Rooms(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        if not request.user.is_authenticated:
-            raise NotAuthenticated
-
         serializer = RoomDetailSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors)
@@ -115,6 +114,8 @@ class Rooms(APIView):
 
 
 class RoomDetail(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
     def get_object(self, pk):
         try:
             return Room.objects.get(pk=pk)
@@ -127,9 +128,6 @@ class RoomDetail(APIView):
         return Response(serializer.data)
 
     def put(self, request, pk):
-        if not request.user.is_authenticated:
-            raise NotAuthenticated
-
         room = self.get_object(pk=pk)
         if request.user != room.owner:
             raise PermissionDenied
@@ -142,9 +140,6 @@ class RoomDetail(APIView):
             return Response(serializer.errors)
 
     def delete(self, request, pk):
-        if not request.user.is_authenticated:
-            raise NotAuthenticated
-
         room = self.get_object(pk=pk)
         if request.user != room.owner:
             raise PermissionDenied
@@ -191,6 +186,8 @@ class RoomReviews(APIView):
 
 
 class RoomPhotos(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
     def get_object(self, pk):
         try:
             return Room.objects.get(pk=pk)
@@ -198,9 +195,6 @@ class RoomPhotos(APIView):
             raise NotFound
 
     def post(self, request, pk):
-        if not request.user.is_autenticated:
-            raise NotAuthenticated
-
         room = self.get_object()
         if request.user != room.owner:
             raise PermissionDenied
