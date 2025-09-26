@@ -11,6 +11,7 @@ from django.db import transaction
 from django.core.paginator import Paginator
 from django.conf import settings
 
+from medias.serializers import PhotoSerializer
 from reviews.serializers import ReviewSerializer
 
 from .models import Amenity, Room
@@ -157,7 +158,7 @@ class RoomReviews(APIView):
         try:
             return Room.objects.get(pk=pk)
         except Room.DoesNotExist:
-            return NotFound
+            raise NotFound
 
     # def get(self, request, pk):
     #     try:
@@ -190,5 +191,23 @@ class RoomReviews(APIView):
 
 
 class RoomPhotos(APIView):
+    def get_object(self, pk):
+        try:
+            return Room.objects.get(pk=pk)
+        except Room.DoesNotExist:
+            raise NotFound
+
     def post(self, request, pk):
-        pass
+        if not request.user.is_autenticated:
+            raise NotAuthenticated
+
+        room = self.get_object()
+        if request.user != room.owner:
+            raise PermissionDenied
+
+        serializer = PhotoSerializer(data=request.data)
+        if serializer.is_valid():
+            new_photo = serializer.save(room=room)
+            return Response(PhotoSerializer(new_photo).data)
+        else:
+            return Response(serializer.errors)

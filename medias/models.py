@@ -5,7 +5,7 @@ from common.models import CommonModel
 class Photo(CommonModel):
     """Photo Model Definition"""
 
-    file = models.ImageField()
+    file = models.URLField()
     description = models.CharField(max_length=140)
     room = models.ForeignKey(
         "rooms.Room",
