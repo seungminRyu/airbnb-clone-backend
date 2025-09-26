@@ -125,6 +125,12 @@ STATIC_URL = "/static/"
 
 AUTH_USER_MODEL = "users.User"
 
+MEDIA_ROOT = "uploads"
+
+MEDIA_URL = "user-uploads/"
+
+PAGE_SIZE = 3
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

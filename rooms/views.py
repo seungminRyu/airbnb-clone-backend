@@ -9,6 +9,7 @@ from rest_framework.exceptions import (
 from rest_framework.status import HTTP_204_NO_CONTENT
 from django.db import transaction
 from django.core.paginator import Paginator
+from django.conf import settings
 
 from reviews.serializers import ReviewSerializer
 
@@ -181,8 +182,13 @@ class RoomReviews(APIView):
         except ValueError:
             page = 1
 
-        PAGE_SIZE = 3
+        page_size = settings.PAGE_SIZE
         room = self.get_object(pk=pk)
-        paginator = Paginator(room.reviews.all(), PAGE_SIZE)
+        paginator = Paginator(room.reviews.all(), page_size)
         page_object = paginator.get_page(page)
         return Response(ReviewSerializer(page_object, many=True).data)
+
+
+class RoomPhotos(APIView):
+    def post(self, request, pk):
+        pass
