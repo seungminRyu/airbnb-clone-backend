@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Amenity, Room
+from wishlists.models import Wishlist
 from categories.serializers import CategorySerializer
 from users.serializers import TinyUserSerializer
 
@@ -19,6 +20,7 @@ class RoomDetailSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
     rating = serializers.SerializerMethodField()
     is_owner = serializers.SerializerMethodField()
+    is_liked = serializers.SerializerMethodField()
 
     class Meta:
         model = Room
@@ -30,6 +32,17 @@ class RoomDetailSerializer(serializers.ModelSerializer):
     def get_is_owner(self, room):
         request = self.context["request"]
         return room.owner == request.user
+
+    def get_is_liked(self, room):
+        request = self.context["request"]
+
+        if not request or not request.user or not request.user.is_authenticated:
+            return False
+        else:
+            return Wishlist.objects.filter(
+                user=request.user,
+                rooms__pk=room.pk,
+            ).exists()
 
 
 class RoomListSerializer(serializers.ModelSerializer):
