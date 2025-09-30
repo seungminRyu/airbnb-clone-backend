@@ -6,7 +6,11 @@ from rest_framework.exceptions import (
     ParseError,
     PermissionDenied,
 )
-from rest_framework.status import HTTP_204_NO_CONTENT
+from rest_framework.status import (
+    HTTP_201_CREATED,
+    HTTP_204_NO_CONTENT,
+    HTTP_400_BAD_REQUEST,
+)
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.db import transaction
 from django.core.paginator import Paginator
@@ -237,6 +241,10 @@ class RoomBookings(APIView):
         room = self.get_object(pk)
         serializer = CreateRoomBookingSerializer(data=request.data)
         if serializer.is_valid():
-            return Response({"ok": True})
+            booking = serializer.save(
+                room=room, user=request.user, kind=Booking.BookingKindChoices.ROOM
+            )
+            new_serializer = PublicBookingSerializer(booking)
+            return Response(new_serializer.data, status=HTTP_201_CREATED)
         else:
-            return Response(serializer.errors)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
