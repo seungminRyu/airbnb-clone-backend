@@ -43,3 +43,20 @@ class CreateRoomBookingSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Can't book in the past")
         else:
             return value
+
+    def validate(self, data):
+        check_in = data["check_in"]
+        check_out = data["check_out"]
+
+        if check_in > check_out:
+            raise serializers.ValidationError(
+                "Check in Time can't be late then check out time"
+            )
+
+        if Booking.objects.filter(
+            check_in__lte=check_out,
+            check_out__gte=check_in,
+        ).exists():
+            raise serializers.ValidationError("These dates are already taken")
+
+        return data
