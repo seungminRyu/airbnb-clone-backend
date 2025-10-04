@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+from django.contrib.auth import authenticate, login, logout
 
 from .serializers import PrivateUserSerializer
 from .models import User
@@ -83,3 +84,32 @@ class PublicUser(APIView):
 
         serializer = PrivateUserSerializer(user)
         return Response(serializer.data)
+
+
+class LogIn(APIView):
+    def post(self, request):
+        username = request.data.get("username")
+        password = request.data.get("password")
+
+        if not username or not password:
+            raise ParseError
+
+        user = authenticate(
+            request,
+            username=username,
+            password=password,
+        )
+
+        if user:
+            login(request, user)
+            return Response({"ok": "Welcome!"})
+        else:
+            return Response({"error": "Wrong password!"})
+
+
+class LogOut(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        logout(request)
+        return Response({"ok": "Bye!"})
