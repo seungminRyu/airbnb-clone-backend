@@ -39,7 +39,10 @@ PROJECT_APPS = [
     "direct_messages.apps.DirectMessagesConfig",
 ]
 
-THIRD_PARTY_APPS = ["rest_framework"]
+THIRD_PARTY_APPS = [
+    "rest_framework",
+    "strawberry.django",
+]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 

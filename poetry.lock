@@ -142,6 +142,33 @@ pycodestyle = ">=2.14.0,<2.15.0"
 pyflakes = ">=3.4.0,<3.5.0"
 
 [[package]]
+name = "graphql-core"
+version = "3.2.6"
+description = "GraphQL implementation for Python, a port of GraphQL.js, the JavaScript reference implementation for GraphQL."
+optional = false
+python-versions = "<4,>=3.6"
+groups = ["main"]
+files = [
+    {file = "graphql_core-3.2.6-py3-none-any.whl", hash = "sha256:78b016718c161a6fb20a7d97bbf107f331cd1afe53e45566c59f776ed7f0b45f"},
+    {file = "graphql_core-3.2.6.tar.gz", hash = "sha256:c08eec22f9e40f0bd61d805907e3b3b1b9a320bc606e23dc145eebca07c8fbab"},
+]
+
+[[package]]
+name = "lia-web"
+version = "0.2.3"
+description = "A library for working with web frameworks"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "lia_web-0.2.3-py3-none-any.whl", hash = "sha256:237c779c943cd4341527fc0adfcc3d8068f992ee051f4ef059b8474ee087f641"},
+    {file = "lia_web-0.2.3.tar.gz", hash = "sha256:ccc9d24cdc200806ea96a20b22fb68f4759e6becdb901bd36024df7921e848d7"},
+]
+
+[package.dependencies]
+typing-extensions = ">=4.14.0"
+
+[[package]]
 name = "mccabe"
 version = "0.7.0"
 description = "McCabe checker, plugin for flake8"
@@ -171,7 +198,7 @@ version = "25.0"
 description = "Core utilities for Python packages"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main", "dev"]
 files = [
     {file = "packaging-25.0-py3-none-any.whl", hash = "sha256:29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484"},
     {file = "packaging-25.0.tar.gz", hash = "sha256:d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"},
@@ -356,6 +383,33 @@ files = [
 ]
 
 [[package]]
+name = "python-dateutil"
+version = "2.9.0.post0"
+description = "Extensions to the standard Python datetime module"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+groups = ["main"]
+files = [
+    {file = "python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3"},
+    {file = "python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"},
+]
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
+name = "six"
+version = "1.17.0"
+description = "Python 2 and 3 compatibility utilities"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+groups = ["main"]
+files = [
+    {file = "six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"},
+    {file = "six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"},
+]
+
+[[package]]
 name = "sqlparse"
 version = "0.5.3"
 description = "A non-validating SQL parser."
@@ -370,6 +424,76 @@ files = [
 [package.extras]
 dev = ["build", "hatch"]
 doc = ["sphinx"]
+
+[[package]]
+name = "strawberry-graphql"
+version = "0.282.0"
+description = "A library for creating GraphQL APIs"
+optional = false
+python-versions = "<4.0,>=3.9"
+groups = ["main"]
+files = [
+    {file = "strawberry_graphql-0.282.0-py3-none-any.whl", hash = "sha256:6671cf90fd3630ae7d50aae2d8a06808ada6ce55d02ee01b7b7cba0026dfed18"},
+    {file = "strawberry_graphql-0.282.0.tar.gz", hash = "sha256:f15610e4944210c15f83be814bfcd6ac1024b4293c18c9f4eee8345639795d1c"},
+]
+
+[package.dependencies]
+graphql-core = ">=3.2.0,<3.4.0"
+lia-web = ">=0.2.1"
+packaging = ">=23"
+python-dateutil = ">=2.7,<3.0"
+typing-extensions = ">=4.5.0"
+
+[package.extras]
+aiohttp = ["aiohttp (>=3.7.4.post0,<4)"]
+asgi = ["python-multipart (>=0.0.7)", "starlette (>=0.18.0)"]
+chalice = ["chalice (>=1.22,<2.0)"]
+channels = ["asgiref (>=3.2,<4.0)", "channels (>=3.0.5)"]
+cli = ["libcst", "pygments (>=2.3,<3.0)", "rich (>=12.0.0)", "typer (>=0.7.0)"]
+debug = ["libcst", "rich (>=12.0.0)"]
+debug-server = ["libcst", "pygments (>=2.3,<3.0)", "python-multipart (>=0.0.7)", "rich (>=12.0.0)", "starlette (>=0.18.0)", "typer (>=0.7.0)", "uvicorn (>=0.11.6)", "websockets (>=15.0.1,<16)"]
+django = ["Django (>=3.2)", "asgiref (>=3.2,<4.0)"]
+fastapi = ["fastapi (>=0.65.2)", "python-multipart (>=0.0.7)"]
+flask = ["flask (>=1.1)"]
+litestar = ["litestar (>=2) ; python_version ~= \"3.10\""]
+opentelemetry = ["opentelemetry-api (<2)", "opentelemetry-sdk (<2)"]
+pydantic = ["pydantic (>1.6.1)"]
+pyinstrument = ["pyinstrument (>=4.0.0)"]
+quart = ["quart (>=0.19.3)"]
+sanic = ["sanic (>=20.12.2)"]
+
+[[package]]
+name = "strawberry-graphql-django"
+version = "0.65.1"
+description = "Strawberry GraphQL Django extension"
+optional = false
+python-versions = "<4.0,>=3.9"
+groups = ["main"]
+files = [
+    {file = "strawberry_graphql_django-0.65.1-py3-none-any.whl", hash = "sha256:e0a69af97c50deb07197641cd0b7320e25b5a3148a05ae6006d1bf5103530e85"},
+    {file = "strawberry_graphql_django-0.65.1.tar.gz", hash = "sha256:de312b77d83ab475b875f76f44161e8c5d9d284f349df61cebc83b4362b57a17"},
+]
+
+[package.dependencies]
+asgiref = ">=3.8"
+django = ">=4.2"
+strawberry-graphql = ">=0.276.2"
+
+[package.extras]
+debug-toolbar = ["django-debug-toolbar (>=3.4)"]
+enum = ["django-choices-field (>=2.2.2)"]
+
+[[package]]
+name = "typing-extensions"
+version = "4.15.0"
+description = "Backported and Experimental Type Hints for Python 3.9+"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"},
+    {file = "typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"},
+]
 
 [[package]]
 name = "tzdata"
@@ -387,4 +511,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "f63be5179923fe21be627e601fa29203e80d9ca30d164ca8a61f07cb2036099d"
+content-hash = "b0da4362ef6134ec2d85076f76f91c3b75a50608c67633be84f0ff5ca254b54b"
