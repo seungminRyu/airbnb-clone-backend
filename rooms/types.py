@@ -1,8 +1,8 @@
+from typing import List, Optional
 from django.conf import settings
 import strawberry
 from strawberry import auto
 from strawberry.types import Info
-import typing
 from . import models
 from wishlists.models import Wishlist
 from users.types import UserType
@@ -17,7 +17,7 @@ class RoomType:
     owner: "UserType"
 
     @strawberry.field
-    def reviews(self, page: typing.Optional[int] = 1) -> typing.List["ReviewType"]:
+    def reviews(self, page: Optional[int] = 1) -> List["ReviewType"]:
         page_size = settings.PAGE_SIZE
         start = (page - 1) * page_size
         end = page * page_size
