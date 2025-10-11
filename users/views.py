@@ -4,6 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from django.contrib.auth import authenticate, login, logout
+from django.conf import settings
+import jwt
 
 from .serializers import PrivateUserSerializer
 from .models import User

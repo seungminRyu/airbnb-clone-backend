@@ -13,6 +13,7 @@ pillow = "^11.3.0"
 djangorestframework = "^3.13.1"
 strawberry-graphql = "^0.282.0"
 strawberry-graphql-django = "^0.65.1"
+pyjwt = "^2.10.1"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.0.0"
