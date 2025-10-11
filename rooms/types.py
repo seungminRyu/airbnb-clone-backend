@@ -28,7 +28,7 @@ class RoomType:
         return self.rating()
 
     @strawberry.field
-    def is_ownder(self, info: Info) -> bool:
+    def is_owner(self, info: Info) -> bool:
         return self.owner == info.context.request.user
 
     @strawberry.field
