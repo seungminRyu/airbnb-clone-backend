@@ -40,7 +40,10 @@ class Amenities(APIView):
             new_amenity = serializer.save()
             return Response(AmenitySerializer(new_amenity).data)
         else:
-            return Response(serializer.errors)
+            return Response(
+                serializer.errors,
+                status=HTTP_400_BAD_REQUEST,
+            )
 
 
 class AmenityDetail(APIView):
