@@ -96,7 +96,10 @@ class Rooms(APIView):
     def post(self, request):
         serializer = RoomDetailSerializer(data=request.data)
         if not serializer.is_valid():
-            return Response(serializer.errors)
+            return Response(
+                serializer.errors,
+                status=HTTP_400_BAD_REQUEST,
+            )
 
         category_pk = request.data.get("category")
         if not category_pk:
