@@ -138,3 +138,7 @@ class TestRooms(APITestCase):
         self.assertEqual(response.status_code, 403)
 
         self.client.force_login(user=self.user)
+
+        response = self.client.post("/api/v1/rooms/")
+
+        self.assertEqual(response.status_code, 400)
