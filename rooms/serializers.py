@@ -8,7 +8,7 @@ from users.serializers import TinyUserSerializer
 class AmenitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Amenity
-        fields = ("name", "description")
+        fields = ("pk", "name", "description")
 
 
 class RoomDetailSerializer(serializers.ModelSerializer):
